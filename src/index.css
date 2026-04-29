@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800&display=swap');
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+  
+  --color-brand: #3b82f6;
+  --color-brand-glow: rgba(59, 130, 246, 0.3);
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-black/40 backdrop-blur-xl border border-white/5;
+  }
+  
+  .glow-sm {
+    box-shadow: 0 0 20px -5px var(--color-brand-glow);
+  }
+  
+  .glow-lg {
+    box-shadow: 0 0 50px -10px var(--color-brand-glow);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px var(--color-brand-glow);
+  }
+
+  .tracking-tightest {
+    letter-spacing: -0.06em;
+  }
+}
+
+body {
+  @apply bg-[#02040a] text-white antialiased selection:bg-blue-500/30;
+  background: radial-gradient(circle at 100% 0%, #0a101f 0%, #02040a 50%);
+}
