@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RiddleEdits |  Video Editing Portfolio</title>
+    <title>RiddleEdits |  Video Editor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
@@ -950,6 +950,44 @@
             margin-left: 2px;
         }
 
+        .wtag {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 4px 10px;
+            background: rgba(37, 99, 235, 0.1);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--primary);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            width: fit-content;
+            position: relative;
+            z-index: 5;
+        }
+
+        .work-card:hover .wtag {
+            background: var(--primary);
+            color: #fff;
+            border-color: transparent;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px var(--primary-glow);
+        }
+
+        .wtag:hover {
+            animation: tagPulse 1.2s infinite ease-in-out;
+            background: #fff !important;
+            color: var(--primary) !important;
+        }
+
+        @keyframes tagPulse {
+            0% { transform: translateY(-2px) scale(1); }
+            50% { transform: translateY(-2px) scale(1.1); box-shadow: 0 8px 20px var(--primary-glow); }
+            100% { transform: translateY(-2px) scale(1); }
+        }
+
         /* Testimonials */
         .test-grid {
             display: grid;
@@ -1439,6 +1477,7 @@
                     <div class="winfo">
                         <div class="wvt">$0 to $100 Trillion But My Brainrots GROW UP!</div>
                         <div class="wcr">BeckBlox <span class="ck">✓</span></div>
+                        <div class="wtag">Retention King</div>
                     </div>
                 </div>
                 <!-- Card 2 -->
@@ -1455,6 +1494,7 @@
                     <div class="winfo">
                         <div class="wvt">Escape Tsunami But You Can ONLY Use Lucky Blocks!</div>
                         <div class="wcr">AbsorberRoblox <span class="ck">✓</span></div>
+                        <div class="wtag">Perfect Pacing</div>
                     </div>
                 </div>
                 <!-- Card 3 -->
@@ -1471,6 +1511,7 @@
                     <div class="winfo">
                         <div class="wvt">MY PARENTS ARE ARGUING IN THE CAR BUT I'M TRAPPED!</div>
                         <div class="wcr">RageElixirReact <span class="ck">✓</span></div>
+                        <div class="wtag">Dynamic Storytelling</div>
                     </div>
                 </div>
                 <!-- Card 4 -->
@@ -1487,6 +1528,7 @@
                     <div class="winfo">
                         <div class="wvt">going from POOR to RICH with SUMMER EVENT REWARDS!</div>
                         <div class="wcr">SEER GROW <span class="ck">✓</span></div>
+                        <div class="wtag">Visual Hooks</div>
                     </div>
                 </div>
 
@@ -1502,6 +1544,7 @@
                     <div class="winfo">
                         <div class="wvt">GTA 5, But We Have INFINITE STARS..</div>
                         <div class="wcr">DoodleArkeyPlays <span class="ck">✓</span></div>
+                        <div class="wtag">Comedic Retention</div>
                     </div>
                 </div>
 
@@ -1516,6 +1559,7 @@
                     <div class="winfo">
                         <div class="wvt">I Became a FAKE COP To Arrest My Friend in GTA RP..</div>
                         <div class="wcr">DoodleArkeyPlays <span class="ck">✓</span></div>
+                        <div class="wtag">Comedic Retention</div>
                     </div>
                 </div>
             </div>
