@@ -467,7 +467,8 @@
             color: #fff;
             margin-bottom: 24px;
             line-height: 0.85;
-            z-index: 3;
+            z-index: 10; /* Increased to be above yt-overlay */
+            position: relative; /* Ensure z-index works */
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.7s 0.2s forwards;
@@ -484,7 +485,8 @@
             font-weight: 400;
             color: rgba(255, 255, 255, 0.45);
             margin-bottom: 48px;
-            z-index: 3;
+            z-index: 10; /* Increased to be above yt-overlay */
+            position: relative; /* Ensure z-index works */
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.7s 0.38s forwards;
@@ -495,7 +497,8 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.7s 0.55s forwards;
-            z-index: 3;
+            z-index: 10; /* Higher than yt-overlay's 5 */
+            position: relative; /* Ensure z-index works */
         }
 
         @keyframes fadeUp {
