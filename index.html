@@ -233,18 +233,18 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            background: conic-gradient(#2563eb, #7c3aed, #ec4899, #f59e0b, #10b981, #2563eb);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .nav-avatar::after {
             content: '';
             position: absolute;
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             background: url('https://i.ibb.co/XZr1Ngdz/1750230855172.png') no-repeat center;
             background-size: cover;
             border-radius: 50%;
-            border: 2px solid #0a0a0a;
             z-index: 2;
         }
 
@@ -375,7 +375,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%) scale(1.15);
             width: 177.78vh;
             height: 100vh;
             min-width: 100%;
@@ -683,7 +683,7 @@
         }
 
         .client-card:hover {
-            transform: translateY(-8px);
+            transform: scale(1.03) translateY(-10px);
         }
 
         .client-avatar {
@@ -794,6 +794,11 @@
             justify-content: center;
             overflow: hidden;
             transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+        }
+
+        .work-card:hover {
+            transform: scale(1.03) translateY(-8px);
+            z-index: 10;
         }
 
         .work-card:hover .video-thumb {
@@ -912,7 +917,7 @@
         }
 
         .test-card:hover {
-            transform: translateY(-8px);
+            transform: scale(1.03) translateY(-10px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(37, 99, 235, 0.15);
         }
 
@@ -1146,9 +1151,173 @@
             filter: blur(10px);
         }
 
+        /* Back to Top Button */
+        #back-to-top {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 50px;
+            height: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer !important;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #back-to-top:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary-glow);
+            transform: translateY(-5px);
+        }
+
+        #back-to-top svg {
+            width: 20px;
+            height: 20px;
+            stroke: #fff;
+            stroke-width: 2.5;
+            fill: none;
+            transition: transform 0.3s ease;
+        }
+
+        #back-to-top:hover svg {
+            transform: translateY(-2px);
+        }
+
+        /* Loading Screen Enhancements */
+        #loader-screen {
+            position: fixed;
+            inset: 0;
+            background: #020202;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.8s cubic-bezier(0.87, 0, 0.13, 1), opacity 0.5s ease;
+        }
+
+        #loader-screen.fade-out {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+
+        .loader-content {
+            text-align: center;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .loader-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 30px;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .loader-logo span {
+            color: var(--primary);
+        }
+
+        .loader-bar-wrap {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .loader-bar-fill {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #2563eb, #7c3aed);
+            box-shadow: 0 0 15px var(--primary-glow);
+            transition: width 0.4s ease-out;
+        }
+
+        .loader-status {
+            font-family: var(--font-mono);
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            height: 14px;
+        }
+
+        .loader-percentage {
+            font-family: var(--font-mono);
+            font-size: 12px;
+            color: #fff;
+            margin-top: 8px;
+            opacity: 0.8;
+        }
+
+        .loader-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: -1;
+        }
+
+        .loader-scanline {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 50%, rgba(37, 99, 235, 0.02) 50%);
+            background-size: 100% 4px;
+            pointer-events: none;
+            z-index: 10;
+        }
+
     </style>
 </head>
 <body id="top">
+
+    <div id="loader-screen">
+        <div class="loader-grid"></div>
+        <div class="loader-scanline"></div>
+        <div class="loader-content">
+            <div class="loader-logo">
+                RIDDLE<span>EDITS</span>
+            </div>
+            <div class="loader-bar-wrap">
+                <div class="loader-bar-fill" id="loader-fill"></div>
+            </div>
+            <div class="loader-status" id="loader-status">INITIALIZING...</div>
+            <div class="loader-percentage" id="loader-percent">0%</div>
+        </div>
+    </div>
 
     <!-- SVG Filters -->
     <svg style="display:none">
@@ -1161,6 +1330,11 @@
 
     <div id="scroll-progress"></div>
     <div class="dot-grid"></div>
+    <div id="back-to-top" class="magnetic" title="Back to Top">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </div>
     <div id="custom-cursor">
         <div class="cursor-inner">
             <div class="cursor-face">
@@ -1191,7 +1365,7 @@
     <header class="hero">
         <div class="yt-bg-wrap">
             <iframe 
-                src="https://www.youtube.com/embed/5EAMyKkARdA?autoplay=1&mute=1&loop=1&playlist=5EAMyKkARdA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
+                src="https://www.youtube.com/embed/5EAMyKkARdA?autoplay=1&mute=1&loop=1&playlist=5EAMyKkARdA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&fs=0&disablekb=1"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
             ></iframe>
@@ -1226,12 +1400,12 @@
             <div class="trusted-stats section-fade stagger-2">
                 <div class="stat-item">
                     <div class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4c8/512.gif" alt="📈"></div>
-                    <div class="stat-value counter" data-target="8700000" data-suffix="+">0</div>
+                    <div class="stat-value counter" data-target="10" data-suffix="M+">0</div>
                     <div class="stat-label">Total Reach</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f91d/512.gif" alt="🤝"></div>
-                    <div class="stat-value counter" data-target="10" data-suffix="+">0</div>
+                    <div class="stat-value counter" data-target="15" data-suffix="+">0</div>
                     <div class="stat-label">Happy Clients</div>
                 </div>
                 <div class="stat-item">
@@ -1476,6 +1650,46 @@
     </footer>
 
     <script>
+        // --- LOADING SCREEN ---
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader-screen');
+            const fill = document.getElementById('loader-fill');
+            const status = document.getElementById('loader-status');
+            const percent = document.getElementById('loader-percent');
+            
+            const statuses = [
+                'INITIALIZING PLUGINS...',
+                'RENDERING TIMELINE...',
+                'OPTIMIZING FOR 4K...',
+                'IMPORTING ASSETS...',
+                'COLOR GRADING...',
+                'FINALIZING EXPORT...'
+            ];
+            
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress > 100) progress = 100;
+                
+                fill.style.width = `${progress}%`;
+                percent.textContent = `${Math.floor(progress)}%`;
+                
+                const statusIdx = Math.floor((progress / 100) * (statuses.length - 1));
+                status.textContent = statuses[statusIdx];
+                
+                if (progress === 100) {
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        loader.classList.add('fade-out');
+                        // Trigger animations after loader is gone
+                        setTimeout(() => {
+                            window.dispatchEvent(new Event('scroll'));
+                        }, 800);
+                    }, 500);
+                }
+            }, 100);
+        });
+
         const cursor = document.getElementById('custom-cursor');
         const cursorInner = cursor.querySelector('.cursor-inner');
         const cursorFace = cursor.querySelector('.cursor-face');
@@ -1793,6 +2007,25 @@
                         requestAnimationFrame(frame);
                     }
                 }());
+            });
+        }
+
+        // Back to Top Logic
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTop.classList.add('visible');
+                } else {
+                    backToTop.classList.remove('visible');
+                }
+            });
+
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
             });
         }
 
