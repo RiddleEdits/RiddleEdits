@@ -80,8 +80,28 @@
             background: rgba(0, 0, 0, 0.2);
             border: 2px solid rgba(255, 255, 255, 0.4);
             border-radius: 50%;
-            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s, background 0.3s;
+            transition: width 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+                        height 0.3s cubic-bezier(0.23, 1, 0.32, 1), 
+                        border-color 0.3s, 
+                        background 0.3s,
+                        box-shadow 0.3s;
             transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .cursor-ripple {
+            position: absolute;
+            inset: -4px;
+            border: 2px solid var(--cursor-glow, #2563eb);
+            border-radius: 50%;
+            opacity: 0;
+            transform: scale(0.8);
+            pointer-events: none;
+        }
+
+        @keyframes cursorRipple {
+            0% { transform: scale(0.8); opacity: 0.8; }
+            100% { transform: scale(1.6); opacity: 0; }
         }
 
         .cursor-face {
@@ -126,23 +146,27 @@
             to { transform: translate(1px, -1px) rotate(1deg); }
         }
 
-        #custom-cursor.cursor-active, #custom-cursor.cursor-play {
-            width: 58px;
-            height: 58px;
+        #custom-cursor.cursor-active, #custom-cursor.cursor-play, #custom-cursor.cursor-work {
+            width: 64px;
+            height: 64px;
         }
 
-        .cursor-active .cursor-inner, .cursor-play .cursor-inner {
-            background: #2563eb;
-            border: 2px solid rgba(59, 130, 246, 0.8);
-            box-shadow: 0 0 30px rgba(37, 99, 235, 0.6);
-            backdrop-filter: none;
+        .cursor-active .cursor-inner, .cursor-play .cursor-inner, .cursor-work .cursor-inner {
+            background: rgba(37, 99, 235, 0.15);
+            border: 2px solid var(--cursor-glow, #2563eb);
+            box-shadow: 0 0 35px var(--cursor-glow-transparent, rgba(37, 99, 235, 0.4));
+            backdrop-filter: blur(4px);
         }
 
-        .cursor-active .cursor-face, .cursor-play .cursor-face {
+        .cursor-work .cursor-ripple {
+            animation: cursorRipple 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+        }
+
+        .cursor-active .cursor-face, .cursor-play .cursor-face, .cursor-work .cursor-face {
             display: none;
         }
 
-        .cursor-active .cursor-emoji, .cursor-play .cursor-emoji {
+        .cursor-active .cursor-emoji, .cursor-play .cursor-emoji, .cursor-work .cursor-emoji {
             display: block;
             scale: 1.25;
             margin-top: -2px;
@@ -761,7 +785,11 @@
             position: relative;
             backdrop-filter: blur(12px) saturate(180%);
             -webkit-backdrop-filter: blur(12px) saturate(180%);
-            transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s ease;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                        box-shadow 0.5s cubic-bezier(0.23, 1, 0.32, 1), 
+                        border-color 0.5s ease,
+                        opacity 0.4s ease, 
+                        visibility 0.4s ease;
         }
 
         .work-card.hidden-project {
@@ -805,16 +833,32 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .video-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 60%);
+            opacity: 0.6;
+            transition: opacity 0.5s ease, background 0.5s ease;
+            z-index: 2;
         }
 
         .work-card:hover {
-            transform: scale(1.03) translateY(-8px);
+            transform: scale(1.04) translateY(-12px);
+            box-shadow: 0 25px 50px -15px var(--glow-color);
+            border-color: var(--glow-color);
             z-index: 10;
         }
 
         .work-card:hover .video-thumb {
-            transform: scale(1.08);
+            transform: scale(1.1);
+        }
+
+        .work-card:hover .video-overlay {
+            opacity: 1;
+            background: linear-gradient(0deg, var(--glow-color) -50%, transparent 70%);
         }
 
         .card-emoji {
@@ -1238,6 +1282,7 @@
     </div>
     <div id="custom-cursor">
         <div class="cursor-inner">
+            <div class="cursor-ripple"></div>
             <div class="cursor-face">
                 <div class="cursor-eyes">
                     <div class="cursor-eye"></div>
@@ -1245,7 +1290,7 @@
                 </div>
                 <div class="cursor-smile"></div>
             </div>
-            <div class="cursor-emoji"></div>
+            <div class="cursor-emoji">🤩</div>
         </div>
     </div>
 
@@ -1383,6 +1428,7 @@
                 <!-- Card 1 -->
                 <div class="work-card glass-effect tilt-card section-fade stagger-1">
                     <div class="video-thumb" id="work-video-1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/Z5IkrpwLtHU/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-1', 'Z5IkrpwLtHU')">
+                        <div class="video-overlay"></div>
                         <span class="thumb-title">$0 to $100 Trillion But My Brainrots GROW UP!</span>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1398,6 +1444,7 @@
                 <!-- Card 2 -->
                 <div class="work-card glass-effect tilt-card section-fade stagger-2">
                     <div class="video-thumb" id="work-video-2" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/k1eaK-88pRg/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-2', 'k1eaK-88pRg')">
+                        <div class="video-overlay"></div>
                         <span class="thumb-title">Escape Tsunami But You Can ONLY Use Lucky Blocks!</span>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1413,6 +1460,7 @@
                 <!-- Card 3 -->
                 <div class="work-card glass-effect tilt-card section-fade stagger-1">
                     <div class="video-thumb" id="work-video-3" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/iFK7Nsct69o/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-3', 'iFK7Nsct69o')">
+                        <div class="video-overlay"></div>
                         <span class="thumb-title">MY PARENTS ARE ARGUING IN THE CAR BUT I'M TRAPPED!</span>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1428,6 +1476,7 @@
                 <!-- Card 4 -->
                 <div class="work-card glass-effect tilt-card section-fade stagger-2">
                     <div class="video-thumb" id="work-video-4" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/svCOxMCkGDY/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-4', 'svCOxMCkGDY')">
+                        <div class="video-overlay"></div>
                         <span class="thumb-title">going from POOR to RICH with SUMMER EVENT REWARDS!</span>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
@@ -1444,6 +1493,7 @@
                 <!-- Extra Projects (Hidden by default) -->
                 <div class="work-card glass-effect tilt-card section-fade hidden-project">
                     <div class="video-thumb" id="work-video-5" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/rJdJbEmO-ko/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-5', 'rJdJbEmO-ko')">
+                        <div class="video-overlay"></div>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                         </div>
@@ -1457,6 +1507,7 @@
 
                 <div class="work-card glass-effect tilt-card section-fade hidden-project">
                     <div class="video-thumb" id="work-video-6" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/ul-omdsGBMI/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-6', 'ul-omdsGBMI')">
+                        <div class="video-overlay"></div>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                         </div>
@@ -1620,11 +1671,19 @@
 
         workCards.forEach(card => {
             card.addEventListener('mouseenter', () => {
-                cursorEmoji.innerText = '😍';
-                cursor.classList.add('cursor-play');
+                const glowColor = getComputedStyle(card).getPropertyValue('--glow-color').trim() || '#2563eb';
+                cursor.style.setProperty('--cursor-glow', glowColor);
+                // Create a transparent version for the glow shadow
+                const transparentColor = glowColor.replace('0.5', '0.4').replace('0.4', '0.3');
+                cursor.style.setProperty('--cursor-glow-transparent', glowColor);
+                
+                cursorEmoji.innerText = '👀';
+                cursor.classList.add('cursor-work');
             });
             card.addEventListener('mouseleave', () => {
-                cursor.classList.remove('cursor-play');
+                cursor.classList.remove('cursor-work');
+                cursor.style.removeProperty('--cursor-glow');
+                cursor.style.removeProperty('--cursor-glow-transparent');
             });
         });
 
