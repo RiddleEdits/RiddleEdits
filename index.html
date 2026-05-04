@@ -389,8 +389,8 @@
             position: absolute;
             inset: 0;
             background: rgba(0,0,0,0.55);
-            z-index: 5; /* Increased to ensure it's above all video elements */
-            pointer-events: auto; /* Catch all events to prevent any player interaction */
+            z-index: 1; 
+            pointer-events: auto;
         }
 
         .hero-glow {
@@ -410,7 +410,7 @@
             bottom: 0; left: 0; right: 0;
             height: 200px;
             background: linear-gradient(to bottom, transparent, #0a0a0a);
-            z-index: 4;
+            z-index: 3;
             pointer-events: none;
         }
 
@@ -431,6 +431,21 @@
 
         @keyframes heroAvatarLoad {
             to { transform: scale(1); opacity: 1; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            pointer-events: none; /* Container is transparent to events */
+        }
+
+        .hero-content > * {
+            pointer-events: auto; /* Buttons and text within are clickable */
         }
 
         .avatar-ring {
@@ -467,8 +482,6 @@
             color: #fff;
             margin-bottom: 24px;
             line-height: 0.85;
-            z-index: 10; /* Increased to be above yt-overlay */
-            position: relative; /* Ensure z-index works */
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.7s 0.2s forwards;
@@ -485,8 +498,6 @@
             font-weight: 400;
             color: rgba(255, 255, 255, 0.45);
             margin-bottom: 48px;
-            z-index: 10; /* Increased to be above yt-overlay */
-            position: relative; /* Ensure z-index works */
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.7s 0.38s forwards;
@@ -497,8 +508,6 @@
             opacity: 0;
             transform: translateY(30px);
             animation: fadeUp 0.7s 0.55s forwards;
-            z-index: 10; /* Higher than yt-overlay's 5 */
-            position: relative; /* Ensure z-index works */
         }
 
         @keyframes fadeUp {
@@ -1265,14 +1274,15 @@
         <div class="yt-overlay"></div>
         <div class="hero-glow"></div>
         
+        <div class="hero-content">
+            <h1 class="hero-name">Editing <br><span>Intentionally.</span></h1>
+            <p class="hero-tagline">for creators who want to stand out.</p>
 
-        <h1 class="hero-name">Editing <br><span>Intentionally.</span></h1>
-        <p class="hero-tagline">for creators who want to stand out.</p>
-
-        <div class="hero-cta-wrap">
-            <a href="https://x.com/RiddlePlayZz" id="hero-cook-btn" class="btn-blue btn-hero magnetic hero-pulse-glow" target="_blank" rel="noopener noreferrer">
-                <span class="fire-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span> LET'S COOK NOW! →
-            </a>
+            <div class="hero-cta-wrap">
+                <a href="https://x.com/RiddlePlayZz" id="hero-cook-btn" class="btn-blue btn-hero magnetic hero-pulse-glow" target="_blank" rel="noopener noreferrer">
+                    <span class="fire-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f525/512.gif" alt="🔥"></span> LET'S COOK NOW! →
+                </a>
+            </div>
         </div>
 
         <div class="scroll-indicator">
