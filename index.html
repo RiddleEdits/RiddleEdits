@@ -375,7 +375,7 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%) scale(1.15);
+            transform: translate(-50%, -50%); /* Reset scale to 1x */
             width: 177.78vh;
             height: 100vh;
             min-width: 100%;
@@ -389,8 +389,8 @@
             position: absolute;
             inset: 0;
             background: rgba(0,0,0,0.55);
-            z-index: 1;
-            pointer-events: none;
+            z-index: 5; /* Increased to ensure it's above all video elements */
+            pointer-events: auto; /* Catch all events to prevent any player interaction */
         }
 
         .hero-glow {
@@ -1254,7 +1254,7 @@
     <header class="hero">
         <div class="yt-bg-wrap">
             <iframe 
-                src="https://www.youtube.com/embed/5EAMyKkARdA?autoplay=1&mute=1&loop=1&playlist=5EAMyKkARdA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&fs=0&disablekb=1"
+                src="https://www.youtube.com/embed/5EAMyKkARdA?autoplay=1&mute=1&loop=1&playlist=5EAMyKkARdA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&iv_load_policy=3&fs=0&disablekb=1&autohide=1"
                 frameborder="0"
                 allow="autoplay; encrypted-media"
             ></iframe>
