@@ -1066,6 +1066,102 @@
             color: #666;
         }
 
+        /* FAQ Section */
+        #faq {
+            padding: 100px 24px;
+            position: relative;
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 55px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .faq-card {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            cursor: pointer;
+        }
+
+        .faq-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 10px 25px -10px rgba(37, 99, 235, 0.15);
+        }
+
+        .faq-question {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 16px;
+            color: #fff;
+            user-select: none;
+            gap: 16px;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.23, 1, 0.32, 1), padding 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            padding: 0 24px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+
+        .faq-card.active {
+            border-color: rgba(37, 99, 235, 0.5);
+            background: rgba(255, 255, 255, 0.03);
+            box-shadow: 0 15px 30px -10px rgba(37, 99, 235, 0.25);
+        }
+
+        .faq-card.active .faq-answer {
+            padding-bottom: 24px;
+        }
+
+        .faq-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            flex-shrink: 0;
+            transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .faq-icon::before,
+        .faq-icon::after {
+            content: '';
+            position: absolute;
+            background-color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon::before {
+            width: 12px;
+            height: 2px;
+        }
+
+        .faq-icon::after {
+            width: 2px;
+            height: 12px;
+        }
+
+        .faq-card.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
         /* Final CTA */
         .final-cta {
             text-align: center;
@@ -1403,14 +1499,14 @@
             <div class="client-grid section-fade stagger-3">
                 <div class="client-row">
                     <div class="client-card magnetic section-fade stagger-1">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/SX0S11yX/channels4-profile.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">SEER GROW</div>
-                        <span class="count-up" data-target="8.83">0K</span>
-                    </div>
-                    <div class="client-card magnetic section-fade stagger-2">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/vvDvQCKT/channels4-profile-1.jpg'); background-size: cover; background-position: center;"></div>
                         <div class="client-name">RageElixirReact</div>
                         <span class="count-up" data-target="1780">0M</span>
+                    </div>
+                    <div class="client-card magnetic section-fade stagger-2">
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/RprqwNBY/channels4-profile-4.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">Kwil</div>
+                        <span class="count-up" data-target="448">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-3">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/1J4W2Dz0/channels4-profile-2.jpg'); background-size: cover; background-position: center;"></div>
@@ -1425,9 +1521,9 @@
                 </div>
                 <div class="client-row">
                     <div class="client-card magnetic section-fade stagger-1">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/RprqwNBY/channels4-profile-4.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">Kwil</div>
-                        <span class="count-up" data-target="448">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://yt3.googleusercontent.com/rPsCjZizhbCF427GgTjbJyEQlIna8X2zDNU_LPoIAdxchXLRuGjmvNmWfPo_JZunWDYbc5prxx4=s160-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">Doodle Arkey Plays</div>
+                        <span class="count-up" data-target="60">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-2">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/MxrmSm3z/channels4-profile-5.jpg'); background-size: cover; background-position: center;"></div>
@@ -1435,14 +1531,14 @@
                         <span class="count-up" data-target="56">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-3">
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/SX0S11yX/channels4-profile.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">SEER GROW</div>
+                        <span class="count-up" data-target="8.83">0K</span>
+                    </div>
+                    <div class="client-card magnetic section-fade stagger-4">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/27L5RLkz/channels4-profile-6.jpg'); background-size: cover; background-position: center;"></div>
                         <div class="client-name">AbsorberRoblox</div>
                         <span class="count-up" data-target="2">0K</span>
-                    </div>
-                    <div class="client-card magnetic section-fade stagger-4">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/CpWsdctf/channels4-profile-7.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">mau plays</div>
-                        <span class="count-up" data-target="3">0K</span>
                     </div>
                 </div>
             </div>
@@ -1624,6 +1720,72 @@
         </div>
     </section>
 
+    <div class="sec-divider"></div>
+
+    <section id="faq" class="section-fade">
+        <div class="sec-glow-blue"></div>
+        <div class="container" style="position: relative; z-index: 1;">
+            <h2 class="section-heading section-fade stagger-1">Frequently <span>Asked</span> Questions <span class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/2753/512.gif" alt="❓"></span></h2>
+            
+            <div class="faq-grid section-fade stagger-2">
+                <!-- FAQ 1 -->
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <span>What is your pricing model?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        My video editing packages range from <strong>$150 to $400 per video</strong>, depending on the edits' duration, pacing complexity, or custom graphical layouts.
+                    </div>
+                </div>
+
+                <!-- FAQ 2 -->
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <span>What is your standard turnaround time?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        The standard turnaround time is <strong>24 to 48 hours</strong> from receipt of raw files and brief. I ensure your deadlines are met without sacrificing professional pacing.
+                    </div>
+                </div>
+
+                <!-- FAQ 3 -->
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <span>Who have you edited videos for?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        I have collaborated with top gaming creators like BeckBlox, RageElixirReact,Kwli, AbsorberRoblox, and Doodle Arkey Plays, building retaining gaming experiences.
+                    </div>
+                </div>
+
+                <!-- FAQ 4 -->
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <span>Do you offer style revisions?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        Yes! Every edit includes up to 2 rounds of revisions within the original scope to calibrate pacing, audio, and zoom transitions perfectly.
+                    </div>
+                </div>
+
+                <!-- FAQ 5 -->
+                <div class="faq-card">
+                    <div class="faq-question">
+                        <span>How do we get started?</span>
+                        <div class="faq-icon"></div>
+                    </div>
+                    <div class="faq-answer">
+                        Click the "LET'S COOK NOW!" action CTA to message me directly via Twitter/X. We will map your next gaming masterpiece!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="final-cta section-fade">
         <div class="container">
             <h2>Ready to <br><span>level up?</span> <span class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f680/512.gif" alt="🚀"></span></h2>
@@ -1738,6 +1900,17 @@
             });
             card.addEventListener('mouseleave', () => {
                 cursor.classList.remove('cursor-play');
+            });
+        });
+
+        const faqElements = document.querySelectorAll('.faq-card');
+        faqElements.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                cursorEmoji.innerText = '🤔';
+                cursor.classList.add('cursor-active');
+            });
+            card.addEventListener('mouseleave', () => {
+                cursor.classList.remove('cursor-active');
             });
         });
 
@@ -1976,6 +2149,31 @@
                 }());
             });
         }
+
+        // --- FAQ ACCORDION INTERACTION ---
+        const faqCards = document.querySelectorAll('.faq-card');
+        faqCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const isActive = card.classList.contains('active');
+                
+                // Close other opened FAQs for a sleek single-accordion behavior
+                faqCards.forEach(c => {
+                    c.classList.remove('active');
+                    const answer = c.querySelector('.faq-answer');
+                    if (answer) {
+                        answer.style.maxHeight = null;
+                    }
+                });
+
+                if (!isActive) {
+                    card.classList.add('active');
+                    const answer = card.querySelector('.faq-answer');
+                    if (answer) {
+                        answer.style.maxHeight = answer.scrollHeight + 'px';
+                    }
+                }
+            });
+        });
 
         // Back to Top Logic
         const backToTop = document.getElementById('back-to-top');
