@@ -51,10 +51,22 @@
         .dot-grid {
             position: fixed;
             inset: 0;
-            background-image: radial-gradient(circle, rgba(255,255,255,0.075) 1px, transparent 1px);
+            background-image: radial-gradient(circle, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
             background-size: 28px 28px;
             pointer-events: none;
             z-index: 1;
+            -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+            mask-image: radial-gradient(circle at center, black 30%, transparent 80%);
+            animation: dotPulse 10s ease-in-out infinite;
+        }
+
+        @keyframes dotPulse {
+            0%, 100% {
+                opacity: 0.7;
+            }
+            50% {
+                opacity: 1;
+            }
         }
 
         /* Custom Cursor */
@@ -1250,6 +1262,74 @@
             opacity: 1;
         }
 
+        .footer-socials {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .discord-copy {
+            background: #121214;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            cursor: pointer;
+            outline: none;
+            position: relative;
+        }
+        
+        .discord-copy:hover {
+            background: #5865F2 !important;
+            border-color: rgba(88, 101, 242, 0.4) !important;
+            color: #fff !important;
+        }
+
+        .discord-copy svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .discord-copy:hover svg {
+            opacity: 1;
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px);
+            background: rgba(10, 10, 12, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 6px 12px;
+            font-size: 11px;
+            font-weight: 700;
+            border-radius: 8px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 10px 25px -5px rgba(0,0,0,0.5);
+            z-index: 100;
+        }
+
+        .tooltip::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(10, 10, 12, 0.95) transparent transparent transparent;
+        }
+
+        .discord-copy:hover .tooltip {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
         .copyright {
             font-size: 12px;
             color: #666;
@@ -1481,7 +1561,7 @@
             <div class="trusted-stats section-fade stagger-2">
                 <div class="stat-item">
                     <div class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/1f4c8/512.gif" alt="📈"></div>
-                    <div class="stat-value counter" data-target="10" data-suffix="M+">0</div>
+                    <div class="stat-value counter" data-target="15" data-suffix="M+">0</div>
                     <div class="stat-label">Total Reach</div>
                 </div>
                 <div class="stat-item">
@@ -1491,7 +1571,7 @@
                 </div>
                 <div class="stat-item">
                     <div class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/2702_fe0f/512.gif" alt="✂️"></div>
-                    <div class="stat-value counter" data-target="65" data-suffix="+">0</div>
+                    <div class="stat-value counter" data-target="85" data-suffix="+">0</div>
                     <div class="stat-label">Videos Edited</div>
                 </div>
             </div>
@@ -1500,45 +1580,45 @@
                 <div class="client-row">
                     <div class="client-card magnetic section-fade stagger-1">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/vvDvQCKT/channels4-profile-1.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">RageElixirReact</div>
-                        <span class="count-up" data-target="1780">0M</span>
+                        <div class="client-name">RageElixir Reacts</div>
+                        <span class="count-up" data-target="1760">0M</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-2">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/RprqwNBY/channels4-profile-4.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">Kwil</div>
-                        <span class="count-up" data-target="448">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/QFT4Bqw7/channels4-profsdfile.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">Mia</div>
+                        <span class="count-up" data-target="735">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-3">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/1J4W2Dz0/channels4-profile-2.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">BeckBlox</div>
-                        <span class="count-up" data-target="182">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/RprqwNBY/channels4-profile-4.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">Kwil</div>
+                        <span class="count-up" data-target="446">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-4">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/Nd76C02k/channels4-profile-3.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">Daltyn</div>
-                        <span class="count-up" data-target="131">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/4Zz7XMDb/channels4-profile.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">MiloBlox</div>
+                        <span class="count-up" data-target="386">0K</span>
                     </div>
                 </div>
                 <div class="client-row">
                     <div class="client-card magnetic section-fade stagger-1">
-                        <div class="client-avatar" style="background-image: url('https://yt3.googleusercontent.com/rPsCjZizhbCF427GgTjbJyEQlIna8X2zDNU_LPoIAdxchXLRuGjmvNmWfPo_JZunWDYbc5prxx4=s160-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">Doodle Arkey Plays</div>
-                        <span class="count-up" data-target="60">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/1J4W2Dz0/channels4-profile-2.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">BeckBlox</div>
+                        <span class="count-up" data-target="182">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-2">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/MxrmSm3z/channels4-profile-5.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">RageBlox</div>
-                        <span class="count-up" data-target="56">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/Nd76C02k/channels4-profile-3.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">Daltyn</div>
+                        <span class="count-up" data-target="129">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-3">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/SX0S11yX/channels4-profile.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">SEER GROW</div>
-                        <span class="count-up" data-target="8.83">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://yt3.googleusercontent.com/rPsCjZizhbCF427GgTjbJyEQlIna8X2zDNU_LPoIAdxchXLRuGjmvNmWfPo_JZunWDYbc5prxx4=s160-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">Doodle Arkey Plays</div>
+                        <span class="count-up" data-target="74.5">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-4">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/27L5RLkz/channels4-profile-6.jpg'); background-size: cover; background-position: center;"></div>
-                        <div class="client-name">AbsorberRoblox</div>
-                        <span class="count-up" data-target="2">0K</span>
+                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/MxrmSm3z/channels4-profile-5.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-name">RageBlox</div>
+                        <span class="count-up" data-target="57">0K</span>
                     </div>
                 </div>
             </div>
@@ -1561,107 +1641,68 @@
             <div class="work-grid">
                 <!-- Card 1 -->
                 <div class="work-card glass-effect tilt-card section-fade stagger-1">
-                    <div class="video-thumb" id="work-video-1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/Z5IkrpwLtHU/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-1', 'Z5IkrpwLtHU')">
+                    <div class="video-thumb" id="work-video-1" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/rJdJbEmO-ko/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-1', 'rJdJbEmO-ko')">
                         <div class="video-overlay"></div>
-                        <span class="thumb-title">$0 to $100 Trillion But My Brainrots GROW UP!</span>
+                        <span class="thumb-title">GTA 5, But We Have INFINITE STARS..</span>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                         </div>
                         <div class="yt-badge">Watch on 🎬 YouTube</div>
-                        <div class="card-emoji">🐘</div>
-                    </div>
-                    <div class="winfo">
-                        <div class="wvt">$0 to $100 Trillion But My Brainrots GROW UP!</div>
-                        <div class="wcr">BeckBlox <span class="ck">✓</span></div>
-                        <div class="wtag">Retention King</div>
-                    </div>
-                </div>
-                <!-- Card 2 -->
-                <div class="work-card glass-effect tilt-card section-fade stagger-2">
-                    <div class="video-thumb" id="work-video-2" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/k1eaK-88pRg/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-2', 'k1eaK-88pRg')">
-                        <div class="video-overlay"></div>
-                        <span class="thumb-title">Escape Tsunami But You Can ONLY Use Lucky Blocks!</span>
-                        <div class="v-play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                        <div class="yt-badge">Watch on 🎬 YouTube</div>
-                        <div class="card-emoji">🌊</div>
-                    </div>
-                    <div class="winfo">
-                        <div class="wvt">Escape Tsunami But You Can ONLY Use Lucky Blocks!</div>
-                        <div class="wcr">AbsorberRoblox <span class="ck">✓</span></div>
-                        <div class="wtag">Perfect Pacing</div>
-                    </div>
-                </div>
-                <!-- Card 3 -->
-                <div class="work-card glass-effect tilt-card section-fade stagger-1">
-                    <div class="video-thumb" id="work-video-3" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/iFK7Nsct69o/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-3', 'iFK7Nsct69o')">
-                        <div class="video-overlay"></div>
-                        <span class="thumb-title">MY PARENTS ARE ARGUING IN THE CAR BUT I'M TRAPPED!</span>
-                        <div class="v-play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                        <div class="yt-badge">Watch on 🎬 YouTube</div>
-                        <div class="card-emoji">🎮</div>
-                    </div>
-                    <div class="winfo">
-                        <div class="wvt">MY PARENTS ARE ARGUING IN THE CAR BUT I'M TRAPPED!</div>
-                        <div class="wcr">RageElixirReact <span class="ck">✓</span></div>
-                        <div class="wtag">Dynamic Storytelling</div>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="work-card glass-effect tilt-card section-fade stagger-2">
-                    <div class="video-thumb" id="work-video-4" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/svCOxMCkGDY/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-4', 'svCOxMCkGDY')">
-                        <div class="video-overlay"></div>
-                        <span class="thumb-title">going from POOR to RICH with SUMMER EVENT REWARDS!</span>
-                        <div class="v-play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
-                        <div class="yt-badge">Watch on 🎬 YouTube</div>
-                        <div class="card-emoji">⭐</div>
-                    </div>
-                    <div class="winfo">
-                        <div class="wvt">going from POOR to RICH with SUMMER EVENT REWARDS!</div>
-                        <div class="wcr">SEER GROW <span class="ck">✓</span></div>
-                        <div class="wtag">Visual Hooks</div>
-                    </div>
-                </div>
-
-                <!-- Extra Projects (Hidden by default) -->
-                <div class="work-card glass-effect tilt-card section-fade hidden-project">
-                    <div class="video-thumb" id="work-video-5" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/rJdJbEmO-ko/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-5', 'rJdJbEmO-ko')">
-                        <div class="video-overlay"></div>
-                        <div class="v-play-btn">
-                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                        </div>
                         <div class="card-emoji">🔥</div>
                     </div>
                     <div class="winfo">
                         <div class="wvt">GTA 5, But We Have INFINITE STARS..</div>
                         <div class="wcr">DoodleArkeyPlays <span class="ck">✓</span></div>
-                        <div class="wtag">Comedic Retention</div>
                     </div>
                 </div>
-
-                <div class="work-card glass-effect tilt-card section-fade hidden-project">
-                    <div class="video-thumb" id="work-video-6" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/ul-omdsGBMI/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-6', 'ul-omdsGBMI')">
+                <!-- Card 2 -->
+                <div class="work-card glass-effect tilt-card section-fade stagger-2">
+                    <div class="video-thumb" id="work-video-2" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/ul-omdsGBMI/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-2', 'ul-omdsGBMI')">
                         <div class="video-overlay"></div>
+                        <span class="thumb-title">I Became a FAKE COP To Arrest My Friend in GTA RP..</span>
                         <div class="v-play-btn">
                             <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
                         </div>
+                        <div class="yt-badge">Watch on 🎬 YouTube</div>
                         <div class="card-emoji">⚔️</div>
                     </div>
                     <div class="winfo">
                         <div class="wvt">I Became a FAKE COP To Arrest My Friend in GTA RP..</div>
                         <div class="wcr">DoodleArkeyPlays <span class="ck">✓</span></div>
-                        <div class="wtag">Comedic Retention</div>
                     </div>
                 </div>
-            </div>
-
-            <div class="section-cta-wrap mt-12">
-                <button id="view-more-work" class="btn-blue btn-hero magnetic mb-8">VIEW MORE PROJECTS</button>
+                <!-- Card 3 -->
+                <div class="work-card glass-effect tilt-card section-fade stagger-3">
+                    <div class="video-thumb" id="work-video-3" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/hbrOQRLRL_E/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-3', 'hbrOQRLRL_E')">
+                        <div class="video-overlay"></div>
+                        <span class="thumb-title">I Busted 21 Myths in Rivals SUMMER UPDATE!</span>
+                        <div class="v-play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="yt-badge">Watch on 🎬 YouTube</div>
+                        <div class="card-emoji">🔍</div>
+                    </div>
+                    <div class="winfo">
+                        <div class="wvt">I Busted 21 Myths in Rivals SUMMER UPDATE!</div>
+                        <div class="wcr">MiloBlox <span class="ck">✓</span></div>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="work-card glass-effect tilt-card section-fade stagger-4">
+                    <div class="video-thumb" id="work-video-4" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.6)), url('https://img.youtube.com/vi/zHvWvIpMsZA/maxresdefault.jpg'); background-size: cover; background-position: center; cursor: pointer;" onclick="loadYTVideo('work-video-4', 'zHvWvIpMsZA')">
+                        <div class="video-overlay"></div>
+                        <span class="thumb-title">Steal A Brainrot, But The BRAINROT TRADER is OVERPOWERED..</span>
+                        <div class="v-play-btn">
+                            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </div>
+                        <div class="yt-badge">Watch on 🎬 YouTube</div>
+                        <div class="card-emoji">🔄</div>
+                    </div>
+                    <div class="winfo">
+                        <div class="wvt">Steal A Brainrot, But The BRAINROT TRADER is OVERPOWERED..</div>
+                        <div class="wcr">Kwil <span class="ck">✓</span></div>
+                    </div>
+                </div>
             </div>
 
             <div class="section-cta-wrap">
@@ -1802,9 +1843,15 @@
             <div class="nav-avatar"></div>
             RiddleEdits
         </div>
-        <a href="https://x.com/RiddlePlayZz" class="footer-social magnetic" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        </a>
+        <div class="footer-socials">
+            <a href="https://x.com/RiddlePlayZz" class="footer-social magnetic" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <button class="footer-social discord-copy magnetic" id="copy-discord-btn" aria-label="Copy Discord Handle">
+                <div class="tooltip" id="discord-tooltip">Copy Discord</div>
+                <svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994.021-.041.001-.09-.041-.106a13.094 13.094 0 0 1-1.873-.894.077.077 0 0 1-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 0 1 .077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 0 1 .078.009c.12.099.246.195.373.289a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.894.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/></svg>
+            </button>
+        </div>
         <div class="copyright">© 2026 RiddleEdits</div>
     </footer>
 
@@ -1967,7 +2014,7 @@
               const p = Math.min((now - start) / dur, 1);
               const ease = 1 - Math.pow(1 - p, 4);
               el.textContent = (ease * display).toFixed(
-                display % 1 !== 0 ? 2 : 0
+                display % 1 !== 0 ? (display * 10 % 1 === 0 ? 1 : 2) : 0
               ) + suffix;
               if (p < 1) requestAnimationFrame(tick);
             })(start);
@@ -2191,6 +2238,36 @@
                     top: 0,
                     behavior: 'smooth'
                 });
+            });
+        }
+
+        // --- DISCORD COPY TO CLIPBOARD ---
+        const discordBtn = document.getElementById('copy-discord-btn');
+        const discordTooltip = document.getElementById('discord-tooltip');
+        if (discordBtn && discordTooltip) {
+            discordBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const discordHandle = 'riddle_.exe';
+                navigator.clipboard.writeText(discordHandle).then(() => {
+                    discordTooltip.innerText = 'Copied!';
+                    setTimeout(() => {
+                        discordTooltip.innerText = 'Copy Discord';
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+
+            discordBtn.addEventListener('mouseenter', () => {
+                if (typeof cursorEmoji !== 'undefined' && cursor) {
+                    cursorEmoji.innerText = '💬';
+                    cursor.classList.add('cursor-active');
+                }
+            });
+            discordBtn.addEventListener('mouseleave', () => {
+                if (cursor) {
+                    cursor.classList.remove('cursor-active');
+                }
             });
         }
 
