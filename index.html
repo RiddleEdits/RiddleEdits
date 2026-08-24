@@ -3,6 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        (function() {
+            try {
+                var originalFetch = window.fetch;
+                Object.defineProperty(window, 'fetch', {
+                    get: function() { return originalFetch; },
+                    set: function(val) { originalFetch = val; },
+                    configurable: true,
+                    enumerable: true
+                });
+            } catch (e) {}
+        })();
+    </script>
     <title>RiddleEdits |  Video Editor</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1601,9 +1614,9 @@
                 </div>
                 <div class="client-row">
                     <div class="client-card magnetic section-fade stagger-1">
-                        <div class="client-avatar" style="background-image: url('https://i.ibb.co/1J4W2Dz0/channels4-profile-2.jpg'); background-size: cover; background-position: center;"></div>
+                        <div class="client-avatar" style="background-image: url('https://yt3.googleusercontent.com/FKMtdFiAhscrQEGdf9GIuU_lIB_5FVrz89h09efMShCBk_UN-99o_1RHlzFDz_UZNhgdrAiCLw=s240-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;"></div>
                         <div class="client-name">BeckBlox</div>
-                        <span class="count-up" data-target="182">0K</span>
+                        <span class="count-up" data-target="181">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-2">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/Nd76C02k/channels4-profile-3.jpg'); background-size: cover; background-position: center;"></div>
@@ -1611,9 +1624,9 @@
                         <span class="count-up" data-target="129">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-3">
-                        <div class="client-avatar" style="background-image: url('https://yt3.googleusercontent.com/rPsCjZizhbCF427GgTjbJyEQlIna8X2zDNU_LPoIAdxchXLRuGjmvNmWfPo_JZunWDYbc5prxx4=s160-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;"></div>
+                        <div class="client-avatar" style="background-image: url('https://yt3.googleusercontent.com/PWkzEu4PoM_HqDpcVo-KqA9JUhtnZUXNzDidXNJrGpyfSX2j2YEO9pROA8mg9lTb3qY_QB4KeoQ=s240-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;"></div>
                         <div class="client-name">Doodle Arkey Plays</div>
-                        <span class="count-up" data-target="74.5">0K</span>
+                        <span class="count-up" data-target="97.8">0K</span>
                     </div>
                     <div class="client-card magnetic section-fade stagger-4">
                         <div class="client-avatar" style="background-image: url('https://i.ibb.co/MxrmSm3z/channels4-profile-5.jpg'); background-size: cover; background-position: center;"></div>
@@ -1723,13 +1736,13 @@
             <div class="test-grid">
                 <!-- Test 1 -->
                 <div class="test-card glass-effect tilt-card section-fade stagger-1">
-                    <div class="test-portrait" style="background-image: url('https://i.ibb.co/1J4W2Dz0/channels4-profile-2.jpg'); background-size: cover; background-position: center;">
+                    <div class="test-portrait" style="background-image: url('https://yt3.googleusercontent.com/FKMtdFiAhscrQEGdf9GIuU_lIB_5FVrz89h09efMShCBk_UN-99o_1RHlzFDz_UZNhgdrAiCLw=s240-c-k-c0x00ffffff-no-rj'); background-size: cover; background-position: center;">
                     </div>
                     <div class="test-body">
                         <p class="test-quote">"Really clean edits, the animations were on point!"</p>
                         <div class="test-info">
                             <div class="test-name">BeckBlox <span class="ck">✓</span></div>
-                            <span class="count-up" data-target="182">0K</span>
+                            <span class="count-up" data-target="181">0K</span>
                         </div>
                     </div>
                 </div>
@@ -1761,71 +1774,7 @@
         </div>
     </section>
 
-    <div class="sec-divider"></div>
 
-    <section id="faq" class="section-fade">
-        <div class="sec-glow-blue"></div>
-        <div class="container" style="position: relative; z-index: 1;">
-            <h2 class="section-heading section-fade stagger-1">Frequently <span>Asked</span> Questions <span class="stat-emoji"><img src="https://fonts.gstatic.com/s/e/notoemoji/latest/2753/512.gif" alt="❓"></span></h2>
-            
-            <div class="faq-grid section-fade stagger-2">
-                <!-- FAQ 1 -->
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <span>What is your pricing model?</span>
-                        <div class="faq-icon"></div>
-                    </div>
-                    <div class="faq-answer">
-                        My video editing packages range from <strong>$150 to $400 per video</strong>, depending on the edits' duration, pacing complexity, or custom graphical layouts.
-                    </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <span>What is your standard turnaround time?</span>
-                        <div class="faq-icon"></div>
-                    </div>
-                    <div class="faq-answer">
-                        The standard turnaround time is <strong>24 to 48 hours</strong> from receipt of raw files and brief. I ensure your deadlines are met without sacrificing professional pacing.
-                    </div>
-                </div>
-
-                <!-- FAQ 3 -->
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <span>Who have you edited videos for?</span>
-                        <div class="faq-icon"></div>
-                    </div>
-                    <div class="faq-answer">
-                        I have collaborated with top gaming creators like BeckBlox, RageElixirReact,Kwli, AbsorberRoblox, and Doodle Arkey Plays, building retaining gaming experiences.
-                    </div>
-                </div>
-
-                <!-- FAQ 4 -->
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <span>Do you offer style revisions?</span>
-                        <div class="faq-icon"></div>
-                    </div>
-                    <div class="faq-answer">
-                        Yes! Every edit includes up to 2 rounds of revisions within the original scope to calibrate pacing, audio, and zoom transitions perfectly.
-                    </div>
-                </div>
-
-                <!-- FAQ 5 -->
-                <div class="faq-card">
-                    <div class="faq-question">
-                        <span>How do we get started?</span>
-                        <div class="faq-icon"></div>
-                    </div>
-                    <div class="faq-answer">
-                        Click the "LET'S COOK NOW!" action CTA to message me directly via Twitter/X. We will map your next gaming masterpiece!
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <section class="final-cta section-fade">
         <div class="container">
