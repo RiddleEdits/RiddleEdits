@@ -1,69 +1,162 @@
-import { motion } from 'motion/react';
-import { Quote } from 'lucide-react';
+import React, { useEffect, useRef } from 'react';
+import { TESTIMONIALS } from '../data';
 
-const testimonials = [
-  {
-    name: 'BloxyPro',
-    quote: "Riddle turned my retention around completely. My last montage hit **3M views** in a week thanks to the pacing.",
-    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=128&h=128&fit=crop&q=80'
-  },
-  {
-    name: 'MineCrafty',
-    quote: "Very quick and **high quality edits**. He understands exactly how to catch the younger audience's attention.",
-    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=128&h=128&fit=crop&q=80'
-  },
-  {
-    name: 'GamerKid',
-    quote: "Since working with Riddle, my **average view duration increased by 40%**. Best investment for my channel.",
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&q=80'
-  }
-];
+export const Testimonials: React.FC = () => {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-export default function Testimonials() {
+  // Repeat the list 2x so it loops infinitely seamlessly
+  const allTestimonials = [...TESTIMONIALS, ...TESTIMONIALS];
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const track = trackRef.current;
+    if (!wrap || !track) return;
+
+    let x = 0;
+    let speed = 0.4;
+    let target = 0.4;
+    const base = 0.4;
+    let dragging = false;
+    let lastX = 0;
+    let vel = 0;
+    let rafId: number;
+
+    const half = () => track.scrollWidth / 2;
+
+    const onMouseEnter = () => {
+      if (!dragging) target = 0;
+    };
+    const onMouseLeave = () => {
+      if (!dragging) target = base;
+    };
+
+    const onDown = (clientX: number) => {
+      dragging = true;
+      lastX = clientX;
+      vel = 0;
+      target = 0;
+      speed = 0;
+    };
+
+    const onMove = (clientX: number) => {
+      if (!dragging) return;
+      const dx = clientX - lastX;
+      lastX = clientX;
+      vel = dx;
+      x += dx;
+      const h = half();
+      if (h > 0) {
+        while (x <= -h) x += h;
+        while (x > 0) x -= h;
+      }
+    };
+
+    const onUp = () => {
+      if (!dragging) return;
+      dragging = false;
+      speed = -vel * 0.15;
+      target = base;
+      vel = 0;
+    };
+
+    const handleMouseDown = (e: MouseEvent) => {
+      onDown(e.clientX);
+    };
+    const handleMouseMove = (e: MouseEvent) => {
+      onMove(e.clientX);
+    };
+    const handleMouseUp = () => {
+      onUp();
+    };
+
+    const handleTouchStart = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        onDown(e.touches[0].clientX);
+      }
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        onMove(e.touches[0].clientX);
+      }
+    };
+    const handleTouchEnd = () => {
+      onUp();
+    };
+
+    wrap.addEventListener('mouseenter', onMouseEnter);
+    wrap.addEventListener('mouseleave', onMouseLeave);
+    wrap.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+
+    wrap.addEventListener('touchstart', handleTouchStart, { passive: true });
+    wrap.addEventListener('touchmove', handleTouchMove, { passive: true });
+    wrap.addEventListener('touchend', handleTouchEnd);
+
+    const tick = () => {
+      if (!dragging) {
+        speed += (target - speed) * 0.035;
+        if (Math.abs(speed) < 0.0008) speed = 0;
+        x -= speed;
+        const h = half();
+        if (h > 0 && x <= -h) x += h;
+      }
+      if (track) {
+        track.style.transform = `translate3d(${x}px, 0px, 0px)`;
+      }
+      rafId = requestAnimationFrame(tick);
+    };
+
+    rafId = requestAnimationFrame(tick);
+
+    return () => {
+      wrap.removeEventListener('mouseenter', onMouseEnter);
+      wrap.removeEventListener('mouseleave', onMouseLeave);
+      wrap.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+
+      wrap.removeEventListener('touchstart', handleTouchStart);
+      wrap.removeEventListener('touchmove', handleTouchMove);
+      wrap.removeEventListener('touchend', handleTouchEnd);
+
+      cancelAnimationFrame(rafId);
+    };
+  }, []);
+
   return (
-    <section id="testimonials" className="py-48">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-center font-display text-5xl md:text-6xl font-black mb-32 tracking-tighter">
-          Don't take my word, <span className="text-blue-500">take theirs</span> 👑
-        </h2>
+    <section className="section" id="testimonials">
+      <div className="site-container">
+        <div className="section-header reveal visible">
+          <h2 className="section-title section-title-lg" id="testimonials-heading">
+            Hear it from the <span className="cursor-highlight inline-block text-accent text-glow">creators 👑</span>
+          </h2>
+        </div>
+      </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((t, index) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="bg-[#0f172a] border border-white/5 rounded-[2.5rem] overflow-hidden flex flex-col items-center text-center group hover:border-[#1d4ed8]/30 transition-all duration-500"
+      <div className="testi-wrap" ref={wrapRef} id="testimonial-carousel-wrap">
+        <div className="testi-track" ref={trackRef} id="testimonial-carousel-track">
+          {allTestimonials.map((item, index) => (
+            <div
+              key={`${item.name}-${index}`}
+              className="testi-card"
+              id={`testi-card-${index}`}
             >
-              <div className="w-full aspect-[4/5] overflow-hidden relative grayscale group-hover:grayscale-0 transition-all duration-700">
-                <img 
-                  src={t.image} 
-                  alt={t.name}
-                  className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-1000"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-transparent to-transparent opacity-90" />
-                
-                <div className="absolute bottom-8 left-0 right-0 px-8">
-                  <blockquote className="text-lg font-medium leading-relaxed italic text-white/80">
-                    "{t.quote.split('**').map((part, i) => 
-                      i % 2 === 1 ? <span key={i} className="text-blue-400 font-bold">{part}</span> : part
-                    )}"
-                  </blockquote>
+              <p className="testi-quote">{item.quote}</p>
+              <div className="testi-author">
+                <div className="testi-avatar">
+                  <img src={item.avatar} alt={item.name} loading="lazy" referrerPolicy="no-referrer" />
+                </div>
+                <div>
+                  <div className="testi-name">{item.name}</div>
+                  <div className="testi-role">{item.subs}</div>
                 </div>
               </div>
-
-              <div className="p-10 w-full bg-[#0f172a]">
-                <cite className="not-italic block font-black text-xl uppercase tracking-widest mb-1">
-                  {t.name}
-                </cite>
-                <span className="text-[11px] font-black uppercase text-blue-500 tracking-[0.3em]">{index === 1 ? '11.4M+' : index === 0 ? '6.1M+' : '2.77M+'} Subscribers</span>
-              </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
