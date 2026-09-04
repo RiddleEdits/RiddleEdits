@@ -1,74 +1,67 @@
-import React from 'react';
-import { ExternalLink } from 'lucide-react';
-import { CREATORS, Creator } from '../data';
-import { FireButton } from './Hero';
+import { motion } from 'motion/react';
 
-export const Clients: React.FC = () => {
-  // Line 1: Top 4 channels by subscriber count
-  const line1 = CREATORS.slice(0, 4);
-  // Line 2: Next 4 channels by subscriber count
-  const line2 = CREATORS.slice(4, 8);
+const clients = [
+  {
+    name: 'BloxyPro',
+    subs: '1.2M Subs',
+    image: 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?w=128&h=128&fit=crop&q=80'
+  },
+  {
+    name: 'MineCrafty',
+    subs: '450K Subs',
+    image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=128&h=128&fit=crop&q=80'
+  },
+  {
+    name: 'GamerKid',
+    subs: '890K Subs',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop&q=80'
+  },
+  {
+    name: 'CraftyAlex',
+    subs: '120K Subs',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=128&h=128&fit=crop&q=80'
+  }
+];
 
-  const renderCard = (creator: Creator, index: number) => {
-    const delayClass = `d${(index % 6) + 1}`;
-    return (
-      <a
-        key={creator.name}
-        href={creator.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={`client-card reveal-scale ${delayClass} visible group w-full`}
-        id={`client-card-${creator.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
-        title={`Visit ${creator.name} on YouTube (${creator.subs})`}
-      >
-        <div className="client-avatar">
-          <img
-            src={creator.avatar}
-            alt={creator.name}
-            loading="lazy"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-        <div className="client-info min-w-0 flex-1">
-          <h4 className="leading-tight">{creator.name}</h4>
-          <div className="subs">
-            <span>{creator.subs}</span>
-          </div>
-        </div>
-        <ExternalLink className="w-3.5 h-3.5 text-neutral-500 opacity-0 group-hover:opacity-100 group-hover:text-white transition-all ml-auto shrink-0" />
-      </a>
-    );
-  };
-
+export default function Clients() {
   return (
-    <>
-      <section className="section" id="clients">
-        <div className="site-container">
-          <div className="section-header reveal visible">
-            <h2 className="section-title section-title-lg" id="clients-heading">
-              Worked with <span className="cursor-highlight inline-block text-accent text-glow">AMAZING</span> creators like you
-            </h2>
-          </div>
+    <section id="clients" className="py-32">
+      <div className="max-w-7xl mx-auto px-6 overflow-hidden">
+        <h2 className="text-center font-display text-4xl md:text-5xl font-black mb-20 tracking-tighter">
+          Trusted by <span className="text-blue-500">niche leaders</span> 💪
+        </h2>
 
-          <div className="trusted-grid" id="trusted-creators-grid">
-            {/* Line 1: 4 channels */}
-            <div className="trusted-row-1 contents" id="trusted-creators-row-1">
-              {line1.map((creator, index) => renderCard(creator, index))}
-            </div>
-
-            {/* Line 2: 4 channels */}
-            <div className="trusted-row-2 contents" id="trusted-creators-row-2">
-              {line2.map((creator, index) => renderCard(creator, index + 4))}
-            </div>
-          </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-12 items-center justify-items-center opacity-60 hover:opacity-100 transition-opacity duration-700">
+          {clients.map((client, index) => (
+            <motion.div
+              key={client.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
+              className="flex flex-col items-center gap-4 group cursor-pointer"
+            >
+              <div className="w-20 h-20 md:w-28 md:h-28 rounded-[2rem] overflow-hidden border border-white/10 group-hover:border-blue-500/50 transition-all duration-500 shadow-2xl">
+                <img 
+                  src={client.image} 
+                  alt={client.name}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="flex flex-col items-center">
+                <span className="font-bold text-[13px] tracking-tight">{client.name}</span>
+                <span className="text-[11px] text-blue-500 font-black">{client.subs}</span>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </section>
 
-      <div className="cta-mid" id="mid-cta-1">
-        <div className="site-container">
-          <FireButton id="mid-cta-btn-1" />
+        <div className="mt-20 flex justify-center">
+           <button className="px-10 py-4 glass rounded-full text-[10px] font-black uppercase tracking-[0.2em] hover:bg-white hover:text-black transition-all">
+             🔥 LET'S COOK NOW! →
+           </button>
         </div>
       </div>
-    </>
+    </section>
   );
-};
+}

@@ -1,109 +1,52 @@
+import { motion } from 'motion/react';
+import { Play } from 'lucide-react';
+
 export default function Navbar() {
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <nav className="fixed top-2 sm:top-3.5 left-0 right-0 z-50 px-4 sm:px-6 pointer-events-none flex justify-center">
-      <div className="w-full max-w-4xl mx-auto pointer-events-auto flex items-center justify-between glass-heavy rounded-full px-4 sm:px-6 py-3 sm:py-3.5 min-h-[52px] sm:min-h-[64px] gap-2 sm:gap-4">
-        {/* Brand - Left */}
-        <div className="flex-1 flex items-center justify-start">
-          <div
-            onClick={scrollToTop}
-            className="flex items-center gap-2 sm:gap-3 flex-shrink-0 cursor-pointer ml-[12px]"
-            style={{ marginLeft: '12px' }}
-          >
-            <img
-              alt="RiddleEdits"
-              className="w-7 h-7 sm:w-9 sm:h-9 rounded-full object-cover"
-              src="/riddle-avatar.png"
-              referrerPolicy="no-referrer"
+    <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-6">
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        className="glass rounded-full px-10 py-4 flex items-center justify-between"
+      >
+        <div className="flex items-center gap-4 cursor-pointer group">
+          <div className="w-11 h-11 rounded-full overflow-hidden border border-white/10 group-hover:scale-105 transition-transform duration-500">
+            <img 
+               src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=64&h=64&fit=crop&q=100" 
+               alt="Logo"
+               className="w-full h-full object-cover"
             />
-            <span className="font-bold text-base text-secondary hidden sm:block">
-              RiddleEdits
-            </span>
           </div>
+          <span className="font-display font-bold tracking-tight text-lg">RiddleEdits</span>
         </div>
 
-        {/* Navigation Links - Center */}
-        <div className="flex items-center justify-center gap-2 sm:gap-6 flex-shrink-0">
-          <a
-            href="#work"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollTo('work');
-            }}
-            className="no-emoji group relative inline-flex items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1 rounded-md text-[11px] sm:text-[13px] font-medium text-[#9AA8AD] no-underline transition-colors duration-200 hover:text-secondary"
-          >
-            <span
-              className="absolute inset-0 rounded-md pointer-events-none opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100"
-              style={{ backgroundColor: 'rgba(0, 0, 0, 0.10)' }}
-            />
-            <span className="relative z-10 leading-none">Work</span>
-          </a>
-          <a
-            href="#testimonials"
-            onClick={(e) => {
-              e.preventDefault();
-              scrollTo('testimonials');
-            }}
-            className="no-emoji group relative inline-flex items-center justify-center px-2.5 sm:px-3 py-1 sm:py-1 rounded-md text-[11px] sm:text-[13px] font-medium text-[#9AA8AD] no-underline transition-colors duration-200 hover:text-secondary"
-          >
-            <span
-              className="absolute inset-0 rounded-md pointer-events-none opacity-0 scale-95 transition-all duration-200 ease-out group-hover:opacity-100 group-hover:scale-100"
-              style={{ backgroundColor: 'rgba(0, 0, 0, 0.10)' }}
-            />
-            <span className="relative z-10 leading-none">Testimonials</span>
-          </a>
-        </div>
-
-        {/* Header CTA Button - Right */}
-        <div className="flex-1 flex items-center justify-end">
-          <div className="relative inline-flex items-center justify-center mr-[12px]" style={{ marginRight: '12px' }}>
-            <a
-              href="https://x.com/RiddlePlayZz"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="
-                inline-flex items-center justify-center font-semibold uppercase tracking-wider
-                text-white cursor-pointer select-none no-underline relative z-10
-                btn-nav
-                px-6 sm:px-8 py-2 sm:py-2.5 text-[11px] sm:text-[12px] rounded-full gap-2 sm:gap-2.5 whitespace-nowrap min-h-[36px] sm:min-h-[40px]
-              "
-              style={{ minWidth: '155px', paddingLeft: '22px', paddingRight: '22px' }}
-              tabIndex={0}
+        <div className="hidden md:flex items-center gap-12">
+          {['Work', 'Testimonials'].map((item) => (
+            <button
+              key={item}
+              onClick={() => scrollTo(item.toLowerCase())}
+              className="text-[14px] font-bold uppercase tracking-[0.2em] text-white/50 hover:text-white transition-colors cursor-pointer"
             >
-              <div className="absolute inset-0 rounded-full overflow-hidden pointer-events-none">
-                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-              </div>
-              <span className="relative z-10 leading-none">Let's cook now!</span>
-              <svg
-                className="relative z-10 flex-shrink-0"
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 8H13M13 8L9 4M13 8L9 12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </a>
-          </div>
+              {item}
+            </button>
+          ))}
         </div>
-      </div>
+
+        <button 
+          onClick={() => scrollTo('cta')}
+          className="text-[12px] font-black uppercase tracking-[0.2em] bg-white text-black px-7 py-3 rounded-full hover:bg-blue-500 hover:text-white transition-all transform active:scale-95"
+        >
+          Let's Cook
+        </button>
+      </motion.div>
     </nav>
   );
 }

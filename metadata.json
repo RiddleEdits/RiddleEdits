@@ -1,7 +1,6 @@
 {
-  "name": "RiddleEdits — Video Editor",
-  "description": "RiddleEdits — Professional video editor portfolio for creators who want to stand out.",
+  "name": "RiddleEdits Portfolio",
+  "description": "Retention-focused video editing portfolio for gaming creators, featuring a modern dark theme and high-conversion layout.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+  "majorCapabilities": []
 }
-
